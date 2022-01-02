@@ -1,5 +1,5 @@
 import { Divider, Space, Tag, Typography } from "antd";
-import './talent.css';
+import './Talent.css';
 import TalentItem from "../../models/TalentItem";
 const { Paragraph } = Typography;
 
