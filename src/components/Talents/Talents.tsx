@@ -1,10 +1,11 @@
-import talentsData from './talents.json';
-import { List, Table, Space, Descriptions, AutoComplete, Input, Checkbox, Form, Divider, Typography } from 'antd';
-import { ReactChild, ReactFragment, ReactPortal, SetStateAction, useEffect, useState } from 'react';
-import TalentItem from './TalentItem';
-import Talent from './Talent';
+import talentsData from '../../data/talents.json';
+import { Space, AutoComplete, Input, Checkbox, Form, Typography, Divider } from 'antd';
+import { useEffect, useState } from 'react';
+import TalentItem from '../../models/TalentItem';
+import Talent from '../Talent/Talent';
 const { Title } = Typography;
-/* 
+
+/* EXAMPLE TALENT DATA 
   {
     "name": "Zealous Fire",
     "tier": "5",
@@ -17,7 +18,7 @@ const { Title } = Typography;
   }
 */
 
-let dataCache: { key: number; name: string; tier: string; activation: string; ranked: string; description: string[]; source: string; }[] | null = null;
+let dataCache: TalentItem[] | null = null;
 
 function getData<TalentItem>() {
   let increment = 0;
@@ -36,17 +37,6 @@ const columns = [
   { title: 'Ranked', dataIndex: 'ranked', key: 'ranked', sorter: (a: { ranked: string; }, b: { ranked: string; }) => a.ranked.localeCompare(b.ranked) },
   { title: 'Source', dataIndex: 'source', key: 'source', sorter: (a: { source: string; }, b: { source: string; }) => a.source.localeCompare(b.source) },
 ];
-
-function description(record: { name: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; tier: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; activation: {} | null | undefined; ranked: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; source: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; description: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) {
-  return (   
-    <Descriptions title={record.name} >
-        <Descriptions.Item label="Description">{record.description}</Descriptions.Item>
-      </Descriptions>
-  );
-}
-
-
-
 
 
 function Talents(): JSX.Element {
@@ -84,7 +74,7 @@ function Talents(): JSX.Element {
   }
 
   const talentsList = data.map((talent) => 
-      <Talent talent={talent} />
+    <Talent talent={talent} key={talent.key}/>  
   );
 
   return (
@@ -107,15 +97,6 @@ function Talents(): JSX.Element {
       </div>
     </Space>
   
-    {/* <Table
-      columns={columns}
-      expandable={{
-        expandedRowRender: description,
-        rowExpandable: record => record.name !== 'Not Expandable',         
-      }}
-      dataSource={data}
-    /> */}
-
     {talentsList}
 
     </>

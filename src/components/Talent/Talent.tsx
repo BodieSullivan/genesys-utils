@@ -1,11 +1,12 @@
 import { Divider, Space, Tag, Typography } from "antd";
-import TalentItem from "./TalentItem";
+import './talent.css';
+import TalentItem from "../../models/TalentItem";
 const { Paragraph } = Typography;
 
 function Talent(props: {talent: TalentItem}): JSX.Element {
 
     return (
-    <div style={{backgroundColor: "white", padding: "0 10px 0 10px"}}>    
+    <div className={"talent-item"}>     
       <Space direction='vertical' >
         <h2>{props.talent.name}</h2>
         <div>
@@ -13,14 +14,11 @@ function Talent(props: {talent: TalentItem}): JSX.Element {
           <Tag>{props.talent.activation}</Tag>
           {props.talent.ranked === 'Yes' ? <Tag>Ranked</Tag> : ''}
           <Tag>Source: {props.talent.source}</Tag>
-        </div>
-        {/* <h3>Tier: <span style={{fontSize: "14px"}}>{props.talent.tier}, Activation: {props.talent.activation}{props.talent.ranked === 'Yes' ? ', Ranked': ''}, </span>Source: {props.talent.source}</h3> */}
+        </div>        
         <Paragraph copyable>{props.talent.description}</Paragraph>
-      </Space>
-      <Divider />
+      </Space>       
     </div>);
 
 }
 
 export default Talent;
-

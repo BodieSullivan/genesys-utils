@@ -1,18 +1,15 @@
-import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
-import Talents from './Talents';
+import Talents from './components/Talents/Talents';
 import { Layout } from 'antd';
+import logo from './triumph.svg';
 
 const { Header, Footer, Content} = Layout;
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <Layout>
-      <Header>Genesys Utilities</Header>
-      <Content style={{ padding: '0 50px' }}>
+      <Header><img src={logo} />Genesys Utilities</Header>
+      <Content>
         <Talents></Talents>
       </Content>
       <Footer></Footer>

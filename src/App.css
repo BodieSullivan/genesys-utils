@@ -1,0 +1,18 @@
+main.ant-layout-content {
+  padding: 0 15px;
+}
+
+header.ant-layout-header {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: darkslateblue;
+  display: flex;
+  align-items: center;
+}
+
+img {
+  height: 48px;
+  width: 48px;
+  margin-right: 10px;
+}
